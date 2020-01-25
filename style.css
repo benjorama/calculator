@@ -3,4 +3,18 @@
     width: 350px;
     border: 1px solid black;
     border-radius: 25px;
+    position: relative;
+}
+
+.display {
+    height: 10%;
+    width: 95%;
+    border: 1px solid black;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    position: absolute;
+    top: 2.0%;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
