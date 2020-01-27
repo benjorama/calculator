@@ -19,3 +19,13 @@
     right: 0;
     margin: auto;
 }
+
+.numberKeys {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    margin-top: 10px;
+}
+
+.numberKeys div {
+    border: 1px solid black;
+}
