@@ -1,7 +1,6 @@
 function initKeypad() {
   let keypad = document.querySelector( ".keypad" );
-  let numberKeys = initNumberKeys();
-  keypad.appendChild( numberKeys );
+  keypad.appendChild( initNumberKeys() );
 }
 
 function initNumberKeys() {
@@ -11,8 +10,7 @@ function initNumberKeys() {
   numberKeys.setAttribute( "class", "numberKeys" );
   for ( let i = 0; i < SIZE; i++ ) {
     for ( let j = 0; j < SIZE; j++ ) {
-      let key = createKey( TOP_LEFT - ( SIZE * i ) + j );
-      numberKeys.appendChild( key );
+      numberKeys.appendChild( createKey( TOP_LEFT - ( SIZE * i ) + j ) );
     }
   }
   return numberKeys;
