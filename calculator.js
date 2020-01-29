@@ -1,6 +1,7 @@
 function initKeypad() {
   let keypad = document.querySelector( ".keypad" );
   keypad.appendChild( initNumberKeys() );
+  keypad.appendChild( initOperationKeys() );
 }
 
 function initNumberKeys() {
@@ -14,6 +15,16 @@ function initNumberKeys() {
     }
   }
   return numberKeys;
+}
+
+function initOperationKeys() {
+  const operationKeys = document.createElement( "div" );
+  operationKeys.setAttribute( "class", "operationKeys" );
+  operationKeys.appendChild( createKey( "/" ) );
+  operationKeys.appendChild( createKey( "*" ) );
+  operationKeys.appendChild( createKey( "-" ) );
+  operationKeys.appendChild( createKey( "+" ) );
+  return operationKeys;
 }
 
 function createKey( string ) {
