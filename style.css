@@ -27,4 +27,7 @@
 
 .key {
     border: 1px solid gold;
+    justify-self: center;
+    align-self: center;
+    padding: 35px;
 }
