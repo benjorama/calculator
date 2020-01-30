@@ -33,3 +33,20 @@ function multiply( a, b ) {
 function divide( a, b ) {
   return a / b;
 }
+
+/**
+ * Returns the result of an operation on two numbers.
+ * @param {String} operation 
+ * @param {number} a 
+ * @param {number} b
+ */
+function operate( operation, a, b ) {
+  if ( operation === "+" )
+    return add( a, b );
+  if ( operation === "-")
+    return subtract( a, b );
+  if ( operation === "*" )
+    return multiply( a, b );
+  if ( operation === "/" ) 
+    return divide( a, b );
+}
