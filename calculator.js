@@ -4,9 +4,9 @@ function initKeys() {
   const keys = document.querySelectorAll( ".key" );
   keys.forEach( element => {
     element.addEventListener( "click", () => {
-      const display = document.querySelector( ".display" );
+      const text = document.querySelector( ".displayText" );
       number += element.innerHTML;
-      display.innerHTML = number;
+      text.innerHTML = number;
     });
   });
 }
