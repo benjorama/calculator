@@ -19,6 +19,12 @@
     margin: 10px auto;
 }
 
+.displayText {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
 .keypad {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
