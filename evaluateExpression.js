@@ -1,3 +1,5 @@
+import operate from "./operate.js";
+
 /**
  * Return the value of an infix expression.
  * @param {string} expression 
@@ -58,15 +60,7 @@ function evaluatePostfix( postfixArray ) {
     if ( operators.test( token ) ) {
       let a = stack.pop();
       let b = stack.pop();
-      let result = null;
-      if ( token === "+" )
-      result = Number( b ) + Number( a );
-      if ( token === "-" )
-      result = b - a;
-      if ( token === "*" )
-      result = b * a;
-      if ( token === "/" )
-      result = b / a;
+      let result = operate( token, Number( b ), Number( a ) );
       stack.push( result );
     }
   });
