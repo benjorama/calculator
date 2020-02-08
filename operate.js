@@ -1,4 +1,23 @@
 /**
+ * Return the result of an operation on two numbers.
+ * @param {String} operation 
+ * @param {number} a 
+ * @param {number} b
+ */
+export default function operate( operation, a, b ) {
+  let value = null;
+  if ( operation === "+" )
+    value =  add( a, b );
+  if ( operation === "-")
+    value = subtract( a, b );
+  if ( operation === "*" )
+    value = multiply( a, b );
+  if ( operation === "/" ) 
+    value = divide( a, b );
+  return value;
+}
+
+/**
  * Return the sum of two numbers.
  * @param {number} a 
  * @param {number} b 
@@ -32,21 +51,4 @@ function multiply( a, b ) {
  */
 function divide( a, b ) {
   return a / b;
-}
-
-/**
- * Returns the result of an operation on two numbers.
- * @param {String} operation 
- * @param {number} a 
- * @param {number} b
- */
-function operate( operation, a, b ) {
-  if ( operation === "+" )
-    return add( a, b );
-  if ( operation === "-")
-    return subtract( a, b );
-  if ( operation === "*" )
-    return multiply( a, b );
-  if ( operation === "/" ) 
-    return divide( a, b );
 }
