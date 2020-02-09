@@ -1,4 +1,4 @@
-import evaluateExpression from "./js/evaluateExpression.js/index.js";
+import evaluateExpression from "./evaluateExpression.js";
 
 let expression = "";
 const operators = /\+|\-|\*|\//;
