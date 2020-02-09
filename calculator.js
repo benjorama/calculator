@@ -13,5 +13,9 @@ keys.forEach( key => {
       expression = expression.trim();
       text.innerHTML = evaluateExpression( expression );
     }
+    if ( key.innerHTML === "C" ) {
+      expression = "";
+      text.innerHTML = "";
+    }
   });
 });
