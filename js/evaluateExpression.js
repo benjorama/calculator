@@ -1,4 +1,4 @@
-import operate from "./operate.js";
+import operate from "./operate.js/index.js";
 
 /**
  * Return the value of an infix expression.
