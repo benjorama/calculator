@@ -9,6 +9,11 @@ export default function evaluateExpression( expression ) {
 }
 
 /**
+ * List of supported operators.
+ */
+const operators = ["+", "-", "*", "/"];
+
+/**
  * Return an array of tokens in postfix order. 
  * @param {string} infixExpression 
  */
@@ -16,11 +21,10 @@ function convertToPostfix( infixExpression ) {
   let tokens = infixExpression.split( " " );
   let postfixArray = [];
   let stack = [];
-  let operators = /\+|\-|\*|\//;
   tokens.forEach( token => {
-    if ( !operators.test( token ) && token != "(" && token != ")") 
+    if ( !operators.includes( token ) && token != "(" && token != ")" ) 
       postfixArray.push( token );
-    if ( operators.test( token ) ) {
+    if ( operators.includes( token ) ) {
       if ( stack.length === 0 || stack[stack.length - 1] === "(" )
         stack.push( token );
       else {
@@ -53,11 +57,10 @@ function convertToPostfix( infixExpression ) {
  */
 function evaluatePostfix( postfixArray ) {
   let stack = [];
-  let operators = /\+|\-|\*|\//; 
   postfixArray.forEach( token => {
-    if ( !operators.test( token ) )
-    stack.push( token );
-    if ( operators.test( token ) ) {
+    if ( !operators.includes( token ) )
+      stack.push( token );
+    if ( operators.includes( token ) ) {
       let a = stack.pop();
       let b = stack.pop();
       let result = operate( token, Number( b ), Number( a ) );
