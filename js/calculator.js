@@ -7,8 +7,14 @@ const keys = document.querySelectorAll( ".key" );
 const text = document.querySelector( ".displayText" );
 keys.forEach( key => {
   key.addEventListener( "click", () => {
-    if ( key.innerHTML != "=" && !operators.includes( key.innerHTML ) ) 
-      expression += key.innerHTML;
+    if ( key.innerHTML != "=" && !operators.includes( key.innerHTML ) ) {
+      if ( key.innerHTML === "(" )
+        expression += key.innerHTML + " ";
+      else if ( key.innerHTML === ")" )
+        expression += " " + key.innerHTML;
+      else
+        expression += key.innerHTML;
+    } 
     if ( operators.includes( key.innerHTML ) ) {
       if ( key.innerHTML === "-" ) {
         if ( previousKey === "" || operators.includes( previousKey ) || previousKey === "(" )
