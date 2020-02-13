@@ -1,40 +1,44 @@
-import evaluateExpression from "./evaluateExpression.js";
+import evaluateExpression from './evaluateExpression';
 
-let expression = "";
-let previousKey = "";
-let prevEvaluation = "";
-const operators = ["+", "-", "*", "/"];
-const keys = document.querySelectorAll( ".key" );
-const text = document.querySelector( ".displayText" );
-keys.forEach( key => {
-  key.addEventListener( "click", () => {
-    if ( key.innerHTML != "=" && !operators.includes( key.innerHTML ) && key.innerHTML != "Del" ) {
-      if ( key.innerHTML === "(" )
-        expression += key.innerHTML + " ";
-      else if ( key.innerHTML === ")" )
-        expression += " " + key.innerHTML;
-      else
-        expression += key.innerHTML;
-    } 
-    if ( operators.includes( key.innerHTML ) ) {
-      if ( key.innerHTML === "-" ) {
-        if ( previousKey === "" || operators.includes( previousKey ) || previousKey === "(" )
-          expression += key.innerHTML;
-        else
-          expression += " " + key.innerHTML + " ";
-      }
-      else
-        expression += " " + key.innerHTML + " ";
+const OPERATORS = ['+', '-', '*', '/'];
+const KEYS = document.querySelectorAll('.key');
+const DISPLAY_TEXT = document.querySelector('.displayText');
+let expression = '';
+let previousKey = '';
+let previousCalculation = '';
+KEYS.forEach((key) => {
+  key.addEventListener('click', () => {
+    if (!Number.isNaN(Number(key.innerHTML)) || key.innerHTML === '.') {
+      expression += key.innerHTML;
     }
-    if ( key.innerHTML === "=" ) {
-      expression = evaluateExpression( expression );
-      prevEvaluation = expression;
-    } 
-    if ( key.innerHTML === "AC" ) 
-      expression = "";
-    if (key.innerHTML === "CE")
-      expression = prevEvaluation;
+    if (key.innerHTML === '(') {
+      expression += `${key.innerHTML} `;
+    }
+    if (key.innerHTML === ')') {
+      expression += ` ${key.innerHTML}`;
+    }
+    if (OPERATORS.includes(key.innerHTML)) {
+      if (key.innerHTML === '-') {
+        if (previousKey === '' || OPERATORS.includes(previousKey) || previousKey === '(') {
+          expression += key.innerHTML;
+        } else {
+          expression += ` ${key.innerHTML} `;
+        }
+      } else {
+        expression += ` ${key.innerHTML} `;
+      }
+    }
+    if (key.innerHTML === '=') {
+      expression = evaluateExpression(expression);
+      previousCalculation = expression;
+    }
+    if (key.innerHTML === 'AC') {
+      expression = '';
+    }
+    if (key.innerHTML === 'CE') {
+      expression = previousCalculation;
+    }
     previousKey = key.innerHTML;
-    text.innerHTML = expression;
+    DISPLAY_TEXT.innerHTML = expression;
   });
 });
