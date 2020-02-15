@@ -19,14 +19,25 @@ function getPrecedence(operator) {
   return 0;
 }
 
+/**
+ * Returns the difference of the precedence of two operators.
+ * @param {string} operatorA
+ * @param {string} operatorB
+ */
 function comparePrecedence(operatorA, operatorB) {
   return getPrecedence(operatorA) - getPrecedence(operatorB);
 }
 
-function hasNextOperator(operatorStack, token) {
+/**
+ * Returns true if an operator exists that has a lesser precedence than the
+ * operator at the top of the operatorStack.
+ * @param {Array} operatorStack
+ * @param {string} operator
+ */
+function hasNextOperator(operatorStack, operator) {
   const TOP_OF_STACK = operatorStack[operatorStack.length - 1];
   if (operatorStack.length > 0) {
-    if (TOP_OF_STACK !== '(' && comparePrecedence(token, TOP_OF_STACK) <= 0) {
+    if (TOP_OF_STACK !== '(' && comparePrecedence(operator, TOP_OF_STACK) <= 0) {
       return true;
     }
   }
