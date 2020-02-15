@@ -1,3 +1,7 @@
+body {
+    background-color: black;
+}
+
 .body {
     height: 500px;
     width: 350px;
@@ -5,18 +9,20 @@
     border-radius: 25px;
     position: relative;
     margin: auto;
+    background-color: black;
 }
 
 .display {
     height: 10%;
-    width: 95%;
-    border: 1px solid black;
+    width: 100%;
+    border: 1px solid #00ff00;
     border-top-left-radius: 25px;
     border-top-right-radius: 25px;
     position: relative;
     left: 0;
     right: 0;
     margin: 10px auto;
+    color: #00ff00;
 }
 
 .displayText {
@@ -31,12 +37,14 @@
     grid-template-rows: 40px;
     grid-gap: 5px;
     height: 80%;
+    color: #00ff00;
+    color: gre
 }
 
 .key {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid gold;
+    border: 1px solid purple;
     border-radius: 10px;
 }
