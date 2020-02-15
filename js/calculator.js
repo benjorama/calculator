@@ -49,6 +49,5 @@ KEYS.forEach((key) => {
 });
 
 document.addEventListener('keydown', (event) => {
-  DISPLAY_TEXT.innerHTML += event.key;
   registerKey(event.key);
 });
