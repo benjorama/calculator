@@ -6,39 +6,49 @@ const DISPLAY_TEXT = document.querySelector('.displayText');
 let expression = '';
 let previousKey = '';
 let previousCalculation = '';
+
+function registerKey(key) {
+  if (!Number.isNaN(Number(key)) || key === '.') {
+    expression += key;
+  }
+  if (key === '(') {
+    expression += `${key} `;
+  }
+  if (key === ')') {
+    expression += ` ${key}`;
+  }
+  if (OPERATORS.includes(key)) {
+    if (key === '-') {
+      if (previousKey === '' || OPERATORS.includes(previousKey) || previousKey === '(') {
+        expression += key;
+      } else {
+        expression += ` ${key} `;
+      }
+    } else {
+      expression += ` ${key} `;
+    }
+  }
+  if (key === '=') {
+    expression = evaluateExpression(expression);
+    previousCalculation = expression;
+  }
+  if (key === 'AC') {
+    expression = '';
+  }
+  if (key === 'CE') {
+    expression = previousCalculation;
+  }
+  previousKey = key;
+  DISPLAY_TEXT.innerHTML = expression;
+}
+
 KEYS.forEach((key) => {
   key.addEventListener('click', () => {
-    if (!Number.isNaN(Number(key.innerHTML)) || key.innerHTML === '.') {
-      expression += key.innerHTML;
-    }
-    if (key.innerHTML === '(') {
-      expression += `${key.innerHTML} `;
-    }
-    if (key.innerHTML === ')') {
-      expression += ` ${key.innerHTML}`;
-    }
-    if (OPERATORS.includes(key.innerHTML)) {
-      if (key.innerHTML === '-') {
-        if (previousKey === '' || OPERATORS.includes(previousKey) || previousKey === '(') {
-          expression += key.innerHTML;
-        } else {
-          expression += ` ${key.innerHTML} `;
-        }
-      } else {
-        expression += ` ${key.innerHTML} `;
-      }
-    }
-    if (key.innerHTML === '=') {
-      expression = evaluateExpression(expression);
-      previousCalculation = expression;
-    }
-    if (key.innerHTML === 'AC') {
-      expression = '';
-    }
-    if (key.innerHTML === 'CE') {
-      expression = previousCalculation;
-    }
-    previousKey = key.innerHTML;
-    DISPLAY_TEXT.innerHTML = expression;
+    registerKey(key.innerHTML);
   });
+});
+
+document.addEventListener('keydown', (event) => {
+  DISPLAY_TEXT.innerHTML += event.key;
+  registerKey(event.key);
 });
