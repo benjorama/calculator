@@ -1,7 +1,7 @@
 import operate from './operate';
 
 /**
- * List of supported operators.
+ * Array of supported operators.
  */
 const OPERATORS = ['+', '-', '*', '/'];
 
@@ -17,6 +17,20 @@ function getPrecedence(operator) {
     return 1;
   }
   return 0;
+}
+
+function comparePrecedence(operatorA, operatorB) {
+  return getPrecedence(operatorA) - getPrecedence(operatorB);
+}
+
+function hasNextOperator(operatorStack, token) {
+  const TOP_OF_STACK = operatorStack[operatorStack.length - 1];
+  if (operatorStack.length > 0) {
+    if (TOP_OF_STACK !== '(' && comparePrecedence(token, TOP_OF_STACK) <= 0) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -35,8 +49,7 @@ function convertToPostfix(infixExpression) {
       if (OPERATOR_STACK.length === 0 || OPERATOR_STACK[OPERATOR_STACK.length - 1] === '(') {
         OPERATOR_STACK.push(token);
       } else {
-        while (OPERATOR_STACK.length > 0 && OPERATOR_STACK[OPERATOR_STACK.length - 1] !== '('
-        && getPrecedence(token) <= getPrecedence(OPERATOR_STACK[OPERATOR_STACK.length - 1])) {
+        while (hasNextOperator(OPERATOR_STACK, token)) {
           POSTFIX_ARRAY.push(OPERATOR_STACK.pop());
         }
         OPERATOR_STACK.push(token);
@@ -63,19 +76,19 @@ function convertToPostfix(infixExpression) {
  * @param {Array} POSTFIX_ARRAY
  */
 function evaluatePostfix(POSTFIX_ARRAY) {
-  const OPERATOR_STACK = [];
+  const CALCULATION_STACK = [];
   POSTFIX_ARRAY.forEach((token) => {
     if (!OPERATORS.includes(token)) {
-      OPERATOR_STACK.push(token);
+      CALCULATION_STACK.push(token);
     }
     if (OPERATORS.includes(token)) {
-      const A = OPERATOR_STACK.pop();
-      const B = OPERATOR_STACK.pop();
+      const A = CALCULATION_STACK.pop();
+      const B = CALCULATION_STACK.pop();
       const RESULT = operate(token, Number(B), Number(A));
-      OPERATOR_STACK.push(RESULT);
+      CALCULATION_STACK.push(RESULT);
     }
   });
-  return OPERATOR_STACK.pop();
+  return CALCULATION_STACK.pop();
 }
 
 /**
