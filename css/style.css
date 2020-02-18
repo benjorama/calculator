@@ -21,6 +21,7 @@ body {
     left: 0;
     right: 0;
     margin: 10px auto;
+    overflow: hidden;
 }
 
 .displayText {
