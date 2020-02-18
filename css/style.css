@@ -4,16 +4,15 @@ body {
 
 .body {
     height: 500px;
-    width: 350px;
-    border: 1px solid black;
-    border-radius: 25px;
+    width: 450px;
     position: relative;
     margin: auto;
     background-color: black;
+    font-family: 'Orbitron', sans-serif;
 }
 
 .display {
-    height: 10%;
+    height: 22%;
     width: 100%;
     border: 1px solid #00ff00;
     border-top-left-radius: 25px;
@@ -22,13 +21,14 @@ body {
     left: 0;
     right: 0;
     margin: 10px auto;
-    color: #00ff00;
 }
 
 .displayText {
     position: absolute;
     bottom: 0;
     right: 0;
+    color: #00ff00;
+    font-size: 2em;
 }
 
 .keypad {
@@ -37,8 +37,6 @@ body {
     grid-template-rows: 40px;
     grid-gap: 5px;
     height: 80%;
-    color: #00ff00;
-    color: gre
 }
 
 .key {
@@ -47,4 +45,16 @@ body {
     align-items: center;
     border: 1px solid purple;
     border-radius: 10px;
+    color: #00ff0088;
+}
+
+.operator, .equal, .parenthesis {
+    font-size: 2.0em;
+    background-color:#00ff003d;
+    border: 1px solid #00ff00a9;
+}
+
+.digit, .decimal {
+    font-size: 1.5em;
+    background-color: rgba(128, 0, 128, 0.274);
 }
