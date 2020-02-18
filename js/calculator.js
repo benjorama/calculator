@@ -1,4 +1,4 @@
-import evaluateExpression from './evaluateExpression';
+import evaluateExpression from './evaluateExpression.js';
 
 const OPERATORS = ['+', '-', '*', '/'];
 const KEYS = document.querySelectorAll('.key');
